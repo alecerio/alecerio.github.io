@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Alessandro Cerioli</title>
+		<title>Publications</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -19,7 +19,7 @@
 
 				<!-- Header -->
 					<header id="header">
-						<h1><a href="index.html">Spectral</a></h1>
+						<h1><a href="index.html">Home</a></h1>
 						<nav id="nav">
 							<ul>
 								<li class="special">
@@ -27,10 +27,10 @@
 									<div id="menu">
 										<ul>
 											<li><a href="index.html">Home</a></li>
-											<li><a href="generic.html">Generic</a></li>
-											<li><a href="elements.html">Elements</a></li>
+											<li><a href="generic.html">Publications</a></li>
+											<!--<li><a href="elements.html">Elements</a></li>
 											<li><a href="#">Sign Up</a></li>
-											<li><a href="#">Log In</a></li>
+											<li><a href="#">Log In</a></li>-->
 										</ul>
 									</div>
 								</li>
@@ -41,41 +41,338 @@
 				<!-- Main -->
 					<article id="main">
 						<header>
-							<h2>Generic Page</h2>
-							<p>Aliquam ut ex ut interdum donec amet imperdiet eleifend</p>
+							<h2>Publications</h2>
+							<p>Selected research contributions in TinyML and embedded AI</p>
 						</header>
-						<section class="wrapper style5">
+
+						<nav class="pub-index" style="margin:20px 0; padding:10px; border-left:3px solid #ccc;">
+							<h3>Publications Index</h3>
+							<ul>
+							  <li><a href="#microplastics">Efficient Detection of Microplastics on Edge Devices With Tailored Compiler for TinyML Applications</a></li>
+							  <li><a href="#rt-neuralcasting">Time-Predictable Deep Noise Suppression on an Edge Device</a></li>
+							  <li><a href="#nas-audio">Neural Architecture Search for Efficient Mixed-Precision Quantization in Audio Denoising</a></li>
+							  <li><a href="#neuralcasting">NeuralCasting: A Front-End Compilation Infrastructure</a></li>
+							</ul>
+						  </nav>
+
+
+						<section id="microplastics" class="wrapper">
 							<div class="inner">
-
-								<h3>Lorem ipsum dolor</h3>
-								<p>Morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. Duis non efficitur nisi, id malesuada justo. Maecenas sagittis felis ac sagittis semper. Curabitur purus leo, tempus sed finibus eget, fringilla quis risus. Maecenas et lorem quis sem varius sagittis et a est. Maecenas iaculis iaculis sem. Donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce ut aliquet justo. Donec id neque ipsum. Integer eget ultricies odio. Nam vel ex a orci fringilla tincidunt. Aliquam eleifend ligula non velit accumsan cursus. Etiam ut gravida sapien.</p>
-
-								<p>Vestibulum ultrices risus velit, sit amet blandit massa auctor sit amet. Sed eu lectus sem. Phasellus in odio at ipsum porttitor mollis id vel diam. Praesent sit amet posuere risus, eu faucibus lectus. Vivamus ex ligula, tempus pulvinar ipsum in, auctor porta quam. Proin nec dui cursus, posuere dui eget interdum. Fusce lectus magna, sagittis at facilisis vitae, pellentesque at etiam. Quisque posuere leo quis sem commodo, vel scelerisque nisi scelerisque. Suspendisse id quam vel tortor tincidunt suscipit. Nullam auctor orci eu dolor consectetur, interdum ullamcorper ante tincidunt. Mauris felis nec felis elementum varius.</p>
-
-								<hr />
-
-								<h4>Feugiat aliquam</h4>
-								<p>Nam sapien ante, varius in pulvinar vitae, rhoncus id massa. Donec varius ex in mauris ornare, eget euismod urna egestas. Etiam lacinia tempor ipsum, sodales porttitor justo. Aliquam dolor quam, semper in tortor eu, volutpat efficitur quam. Fusce nec fermentum nisl. Aenean erat diam, tempus aliquet erat.</p>
-
-								<p>Etiam iaculis nulla ipsum, et pharetra libero rhoncus ut. Phasellus rutrum cursus velit, eget condimentum nunc blandit vel. In at pulvinar lectus. Morbi diam ante, vulputate et imperdiet eget, fermentum non dolor. Ut eleifend sagittis tincidunt. Sed viverra commodo mi, ac rhoncus justo. Duis neque ligula, elementum ut enim vel, posuere finibus justo. Vivamus facilisis maximus nibh quis pulvinar. Quisque hendrerit in ipsum id tellus facilisis fermentum. Proin mauris dui, at vestibulum sit amet, auctor bibendum neque.</p>
-
+							  <header class="major">
+								<h3>Efficient Detection of Microplastics on Edge Devices with Tailored Compiler for TinyML Applications</h3>
+								<p><em>Published in IEEE Access, 2025</em></p>
+							  </header>
+							  <p>
+								Microplastics—tiny plastic fragments that are now widespread in oceans, rivers, and even drinking water—pose serious risks to both ecosystems and human health. Detecting them efficiently is crucial for environmental monitoring, but traditional laboratory methods are often slow, costly, and not suited for real-time, large-scale use.
+							  </p>
+							  <p>
+								This study explores how <strong>artificial intelligence (AI)</strong> can make microplastic detection faster and more practical by running directly on small, low-power devices (so-called <strong>edge devices</strong>). These are inexpensive microcontrollers or sensors that can operate in the field, without relying on cloud computing.
+							  </p>
+							  <p>
+								To achieve this, two neural network models were tested: a <strong>Multi-Layer Perceptron (MLP)</strong>, a simple but effective neural network, and a <strong>Gated Recurrent Unit (GRU)</strong>, a model particularly suited to sequential data. A <strong>Neural Architecture Search</strong> process was used to automatically select the best model configurations. The networks were then <strong>quantized</strong> (reducing precision from 32-bit to 8-bit integers), making them smaller, faster, and more energy-efficient with minimal accuracy loss.
+							  </p>
+							  <p>
+								The central innovation is a new compiler, <strong>NeuralCasting</strong>, that converts models directly into pure C code using only standard libraries. Unlike conventional frameworks such as TensorFlow Lite or ONNX Runtime, NeuralCasting removes unnecessary overhead, enabling portability to bare-metal devices with reduced latency, memory use, and power consumption.
+							  </p>
+							  <p>
+								Experiments showed that the proposed approach achieves real-time microplastic detection with high accuracy (over 99%) across different microcontrollers, from powerful STM32 boards to ultra-low-power devices like the Arduino Nano. Compared with state-of-the-art frameworks, the new compiler consistently delivered faster and more stable results.
+							  </p>
+							  <p>
+								In short, this work demonstrates that combining TinyML techniques, quantization, and a lightweight compiler makes it possible to bring advanced AI into small devices for <strong>environmental monitoring in the field</strong>—a step toward scalable, sustainable solutions to microplastic pollution.
+							  </p>
+							  <p>
+								<a href="https://ieeexplore.ieee.org/document/10990265" target="_blank">Read the full paper on IEEE Xplore</a>
+							  </p>
 							</div>
-						</section>
+
+							<table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse; margin:20px auto; text-align:center;">
+								<caption><strong>Classification results on the validation dataset</strong></caption>
+								<thead style="background:#000000;">
+								  <tr>
+									<td>Model</td>
+									<td>Precision</td>
+									<td>Recall</td>
+									<td>F1-score</td>
+									<td>Accuracy</td>
+								  </tr>
+								</thead>
+								<tbody>
+								  <tr>
+									<td>MLP FP32</td>
+									<td>99.10%</td>
+									<td>99.00%</td>
+									<td>99.00%</td>
+									<td>99.10%</td>
+								  </tr>
+								  <tr>
+									<td>MLP INT8</td>
+									<td>98.80%</td>
+									<td>98.80%</td>
+									<td>98.80%</td>
+									<td>98.80%</td>
+								  </tr>
+								  <tr>
+									<td>GRU FP32</td>
+									<td>99.20%</td>
+									<td>99.20%</td>
+									<td>99.20%</td>
+									<td>99.20%</td>
+								  </tr>
+								  <tr>
+									<td>GRU INT8</td>
+									<td>99.10%</td>
+									<td>99.10%</td>
+									<td>99.10%</td>
+									<td>99.10%</td>
+								  </tr>
+								</tbody>
+							  </table>
+
+
+							  <table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse; margin:20px auto; text-align:center;">
+								<caption><strong>Inference execution times on target devices</strong></caption>
+								<thead style="background:#000000;">
+								  <tr>
+									<td>Model</td>
+									<td>Device</td>
+									<td>TensorFlow Lite Micro</td>
+									<td>ONNX Runtime</td>
+									<td>NeuralCasting</td>
+								  </tr>
+								</thead>
+								<tbody>
+								  <tr>
+									<td rowspan="2">MLP INT8</td>
+									<td>STM32H7</td>
+									<td>0.25 ms</td>
+									<td>0.31 ms</td>
+									<td>0.19 ms</td>
+								  </tr>
+								  <tr>
+									<td>Arduino Nano 33 BLE</td>
+									<td>0.51 ms</td>
+									<td>0.62 ms</td>
+									<td>0.41 ms</td>
+								  </tr>
+								  <tr>
+									<td rowspan="2">GRU INT8</td>
+									<td>STM32H7</td>
+									<td>0.49 ms</td>
+									<td>0.58 ms</td>
+									<td>0.33 ms</td>
+								  </tr>
+								  <tr>
+									<td>Arduino Nano 33 BLE</td>
+									<td>0.98 ms</td>
+									<td>1.15 ms</td>
+									<td>0.77 ms</td>
+								  </tr>
+								</tbody>
+							  </table>
+							  
+							  
+
+						  </section>
+						  
+						
+						
+						  <section id="rt-neuralcasting" class="wrapper style5">
+							<div class="inner">
+							  <header class="major">
+								<h3>Time-Predictable Deep Noise Suppression on an Edge Device</h3>
+								<p><em>NeuralCasting + Patmos for predictable, efficient speech enhancement on embedded devices</em></p>
+								<p><em>Published in IEEE ISORC Workshop, 2025</em></p>
+							  </header>
+						  
+							  <p>
+								The paper addresses how to run neural network–based noise suppression (DNS) on small, resource-constrained devices—
+								the kind used in hearing aids, earbuds, and headsets—while still meeting strict real-time latency requirements. It
+								combines <strong>NeuralCasting</strong>, a compiler that turns ONNX models directly into pure C, with <strong>Patmos</strong>, a
+								time-predictable processor architecture, to achieve low-overhead inference with analyzable timing on edge hardware.
+							  </p>
+						  
+							  <p>
+								As the target model, the authors use <strong>NSNet2</strong>, a speech-enhancement network that estimates a frequency-domain mask
+								from noisy audio (STFT) using a stack of fully connected and GRU layers. The system maintains GRU hidden states across
+								frames and produces a denoised signal after inverse STFT—capturing the benefits of modern DNS while fitting embedded
+								constraints.
+							  </p>
+						  
+							  <p>
+								To fit tight memory and energy budgets, the work employs <strong>quantization</strong> and generates <strong>integer-only</strong> kernels,
+								representing scales in fixed-point and computing non-linearities (sigmoid, tanh) via compact lookup tables instead of
+								floating-point math. This keeps execution deterministic and fast on MCUs without FPUs, which is essential for
+								worst-case-execution-time (WCET) analysis.
+							  </p>
+						  
+							  <p>
+								A key contribution is the ability to <strong>analyze and guarantee real-time behavior</strong>. The paper integrates the generated C
+								code with the <em>Platin</em> WCET toolchain, enabling static timing analysis of the full inference path on Patmos—something
+								typical runtime engines struggle to provide due to extra layers and dynamic behaviors.
+							  </p>
+						  
+							  <ul>
+								<li><strong>Compiler–architecture co-design:</strong> NeuralCasting emits platform-agnostic C (no heavyweight runtime), then
+									targets Patmos for predictable timing.</li>
+								<li><strong>Integer-only quantization:</strong> fixed-point scaling and LUT activations avoid FP instructions and stabilize latency.</li>
+								<li><strong>Model choice:</strong> NSNet2 (FC–GRU–GRU–FC…) balances quality and compute for real-time DNS on edge devices.</li>
+								<li><strong>Comparative evaluation:</strong> results are contrasted with state-of-the-art frameworks (TensorFlow Lite, ONNX Runtime,
+									onnx2c, PyTorch) and with other hardware (e.g., Raspberry Pi), highlighting latency stability and overhead reduction.</li>
+							  </ul>
+						  
+							  <p>
+								In plain terms: the paper shows how to turn a practical denoising network into <em>predictable</em>, quantized C code that runs
+								fast and consistently on small devices, and how to prove those timing guarantees with WCET tools—bridging modern AI
+								and the hard real-time requirements of embedded audio.
+							  </p>
+							</div>
+						  </section>
+
+						  <section id="nas-audio" class="wrapper">
+							
+							
+
+							<div class="inner">
+							  <header class="major">
+								<h3>Neural Architecture Search for Efficient Mixed-Precision Quantization in Audio Denoising</h3>
+								<p><em>Optimizing NSNet2 for quality, speed, and memory on embedded devices</em></p>
+								<p><em>Published in IEEE PerCom Workshop (PerConAI), 2025</em></p>
+							  </header>
+						  
+							  <p>
+								This paper tackles a practical question: how can we run a high-quality speech denoising network on small,
+								resource-constrained hardware without sacrificing audio quality? The authors focus on <strong>NSNet2</strong>—a denoising
+								model based on fully connected and GRU layers—and search automatically for the best <strong>mixed-precision
+								quantization</strong> (per-layer bit-widths of 8, 16, or 32 bits). The goal is to preserve perceptual quality while cutting
+								inference time and memory footprint—key constraints for headsets and similar edge devices.
+							  </p>
+						  
+							  <p>
+								The core method is an <strong>evolutionary Neural Architecture Search</strong> (NAS): each candidate solution encodes
+								the bit-width of every quantizable operation in NSNet2 (a 93-gene chromosome over {8, 16, 32}). A multi-objective
+								fitness evaluates three metrics: (1) <strong>PESQ</strong> (Perceptual Evaluation of Speech Quality) to capture denoising quality,
+								(2) <strong>inference time</strong>, and (3) <strong>memory footprint</strong>. The search uses the <em>pymoo</em> toolkit for selection,
+								crossover, and mutation to evolve a Pareto front of mixed-precision configurations.
+							  </p>
+						  
+							  <p>
+								To make the hardware objectives realistic, the authors implement NSNet2 in <strong>C</strong> and benchmark inference time
+								over 10,000 iterations, while computing the memory footprint from layer sizes and assigned bit-widths. For PESQ,
+								a PyTorch simulation of mixed-precision operators runs STFT-based denoising and scores quality with a standard
+								PESQ implementation. This coupling of <em>software simulation for quality</em> and <em>C benchmarking for performance</em>
+								yields hardware-aware, audio-aware decisions during search.
+							  </p>
+						  
+							  <ul>
+								<li><strong>Problem:</strong> find per-layer bit-widths that keep PESQ high while minimizing time and memory on embedded targets.</li>
+								<li><strong>Approach:</strong> evolutionary NAS over 93 mixed-precision genes (8/16/32-bit) with a three-metric objective (PESQ, time, memory).</li>
+								<li><strong>Evaluation:</strong> C implementation for timing; analytical size for memory; PyTorch MPQ simulation + PESQ for audio quality.</li>
+							  </ul>
+						  
+							  <p>
+								<strong>Key result.</strong> Compared with the float32 baseline, the best mixed-precision solution reduces <strong>inference time by
+								29.93%</strong> and <strong>memory footprint by 57.88%</strong>, with a <em>negligible</em> PESQ drop (near-baseline perceptual quality).
+								Against uniformly quantized int8, the mixed-precision model delivers substantially better PESQ while remaining
+								compact and fast—highlighting the benefit of allocating precision where it matters most.
+							  </p>
+						  
+							  <p>
+								In plain terms, the paper shows how to <em>automatically</em> choose which parts of a denoising network deserve more
+								bits and which can be aggressively quantized, so that the model still sounds good while running faster and fitting
+								on smaller devices. It’s a practical recipe for turning state-of-the-art denoising into an <strong>edge-ready</strong> solution.
+							  </p>
+							</div>
+
+							<div style="text-align: center;">
+								<img src="images/nasnsnet2.png" 
+									 alt="Pareto Optimal"  
+									 style="max-width: 75%; border-radius: 10px;">
+							</div>
+							
+
+						  </section>
+						  
+						  
+
+						  <section id="neuralcasting" class="wrapper style5">
+							<div class="inner">
+							  <header class="major">
+								<h3>NeuralCasting: A Front-End Compilation Infrastructure for Neural Networks</h3>
+								<p><em>From ONNX graphs to portable, optimized C for edge and bare-metal devices</em></p>
+								<p><em>Published in IEEE IOTSMS, 2024</em></p>
+							  </header>
+						  
+							  <p>
+								The paper introduces <strong>NeuralCasting</strong>, a compiler that converts neural networks encoded in
+								<strong>ONNX</strong> directly into <strong>pure C code</strong> using only the C standard library. By removing the need for a
+								heavyweight inference engine (e.g., ONNX Runtime), the generated code becomes highly portable and
+								latency-efficient on resource-constrained and even bare-metal systems.
+							  </p>
+						  
+							  <p>
+								<strong>Core idea.</strong> Neural networks are modeled as a <strong>directed acyclic graph (DAG)</strong>. NeuralCasting parses the ONNX
+								graph, assembles an internal DAG, then performs a dependency-aware <em>DAG traversal</em> to emit C in the correct
+								order. Each operator node (e.g., GEMM, Conv, GRU) owns a <em>code-generation routine</em> that loads a small C template
+								and expands placeholders (tensor names, loop bounds, indices), producing compact kernels without runtime overhead.
+							  </p>
+						  
+							  <ul>
+								<li><strong>Memory strategy:</strong> weights can be embedded as <em>static data-segment</em> arrays (predictable footprint, no allocator) or
+									loaded to the <em>heap</em> at startup from binary blobs, depending on device constraints.</li>
+								<li><strong>Parallelization:</strong> optional <em>OpenMP</em> clauses are injected during codegen to parallelize per-layer linear-algebra loops
+									(e.g., convolutions, matrix multiplies) on multicore CPUs.</li>
+								<li><strong>Testing pipeline:</strong> every generated model is validated by comparing its outputs against ONNX Runtime/Torch on the
+									same inputs to guarantee numerical correctness.</li>
+							  </ul>
+						  
+							  <p>
+								<strong>What models were compiled?</strong> The paper demonstrates a <em>two-layer MLP</em>, a <em>ResNet</em> cell for image recognition, and
+								<em>NSNet2</em> for speech enhancement/noise suppression—representative of dense, convolutional, and recurrent workloads
+								used in TinyML. Across these, NeuralCasting already supports the majority of required ONNX operators (≈86%).
+							  </p>
+						  
+							  <p>
+								<strong>How fast is it?</strong> On edge-class hardware (x86-64 laptop CPU and Raspberry Pi 5), the generated C achieves competitive
+								average latency, especially on small/medium models; for small MLPs the speedup approaches <strong>~×10</strong> versus
+								ONNX Runtime and PyTorch, thanks to the absence of runtime overhead. Convolutional layers remain the main
+								bottleneck, but parallelization improves throughput.
+							  </p>
+						  
+							  <p>
+								<strong>Why it matters.</strong> By turning ONNX graphs into lean, analyzable C, NeuralCasting gives developers precise control over
+								latency, memory layout, and deployment on <em>bare-metal</em> targets—key requirements for real-time audio, wearables, and
+								other TinyML applications. The project is available open-source, enabling further extensions (e.g., quantization and
+								additional operator coverage).
+							  </p>
+						  
+							  <p>
+								<a href="https://github.com/alecerio/NeuralCasting" target="_blank" rel="noopener">Project repository (GitHub)</a>
+							  </p>
+							</div>
+						  </section>
+						  
+
+
+
+
+	
 					</article>
 
 				<!-- Footer -->
-					<footer id="footer">
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-						</ul>
-						<ul class="copyright">
-							<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-						</ul>
-					</footer>
+				<footer id="footer">
+
+					<p>
+						<a href="mailto:alessandrocerioliphd@gmail.com"><i class="fas fa-envelope"></i> Email</a> &nbsp;·&nbsp;
+						<a href="https://github.com/alecerio"><i class="fab fa-github"></i> GitHub</a> &nbsp;·&nbsp;
+						<a href="https://www.linkedin.com/in/alessandro-cerioli-26237231/"><i class="fab fa-linkedin"></i> LinkedIn</a>
+						&middot;
+						<a href="https://ieeexplore.ieee.org/author/313137379207834">IEEE Xplore</a>
+					</p>
+
+					<p style="text-align:center; font-size:0.9em; color:#777;">
+						© 2025 Alessandro Cerioli. All rights reserved.
+					</p>
+				</footer>
 
 			</div>
 
