@@ -62,24 +62,47 @@
 								<h3>Efficient Detection of Microplastics on Edge Devices with Tailored Compiler for TinyML Applications</h3>
 								<p><em>Published in IEEE Access, 2025</em></p>
 							  </header>
-							  <p>
-								Microplastics—tiny plastic fragments that are now widespread in oceans, rivers, and even drinking water—pose serious risks to both ecosystems and human health. Detecting them efficiently is crucial for environmental monitoring, but traditional laboratory methods are often slow, costly, and not suited for real-time, large-scale use.
-							  </p>
-							  <p>
-								This study explores how <strong>artificial intelligence (AI)</strong> can make microplastic detection faster and more practical by running directly on small, low-power devices (so-called <strong>edge devices</strong>). These are inexpensive microcontrollers or sensors that can operate in the field, without relying on cloud computing.
-							  </p>
-							  <p>
-								To achieve this, two neural network models were tested: a <strong>Multi-Layer Perceptron (MLP)</strong>, a simple but effective neural network, and a <strong>Gated Recurrent Unit (GRU)</strong>, a model particularly suited to sequential data. A <strong>Neural Architecture Search</strong> process was used to automatically select the best model configurations. The networks were then <strong>quantized</strong> (reducing precision from 32-bit to 8-bit integers), making them smaller, faster, and more energy-efficient with minimal accuracy loss.
-							  </p>
-							  <p>
-								The central innovation is a new compiler, <strong>NeuralCasting</strong>, that converts models directly into pure C code using only standard libraries. Unlike conventional frameworks such as TensorFlow Lite or ONNX Runtime, NeuralCasting removes unnecessary overhead, enabling portability to bare-metal devices with reduced latency, memory use, and power consumption.
-							  </p>
-							  <p>
-								Experiments showed that the proposed approach achieves real-time microplastic detection with high accuracy (over 99%) across different microcontrollers, from powerful STM32 boards to ultra-low-power devices like the Arduino Nano. Compared with state-of-the-art frameworks, the new compiler consistently delivered faster and more stable results.
-							  </p>
-							  <p>
-								In short, this work demonstrates that combining TinyML techniques, quantization, and a lightweight compiler makes it possible to bring advanced AI into small devices for <strong>environmental monitoring in the field</strong>—a step toward scalable, sustainable solutions to microplastic pollution.
-							  </p>
+							  <h2>Efficient Microplastic Detection on Edge Devices</h2>
+
+  <div class="slide-grid">
+    <div>
+      <h3>Motivation &amp; Key Challenges</h3>
+      <ul>
+        <li>Microplastic detection is critical for environmental monitoring and real-time analysis.</li>
+        <li>On-device AI is needed for low-power, resource-constrained sensing systems.</li>
+        <li>Key challenges: limited memory, latency, energy consumption, and portability.</li>
+        <li>Traditional inference engines introduce overhead on embedded devices.</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Proposed Approach &amp; Methods</h3>
+      <ul>
+        <li>NeuralCasting: ONNX-to-native-C compiler for TinyML deployment.</li>
+        <li>Direct C generation without an inference engine.</li>
+        <li>Post-training int8 quantization integrated into the deployment flow.</li>
+        <li>NAS-based selection of lightweight MLP and GRU models.</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Results &amp; Conclusions</h3>
+      <ul>
+        <li>High accuracy preserved after quantization: MLP ≈ 0.991, GRU ≈ 0.985.</li>
+        <li>Lower latency, memory footprint, and energy consumption compared with runtime-based deployment.</li>
+        <li>Portable deployment across MCUs and edge devices.</li>
+        <li>Direct compilation to C enables efficient and predictable real-time TinyML inference.</li>
+      </ul>
+    </div>
+  </div>
+
+  <figure>
+    <img src="figures/microplastic_latency_figure5.png"
+         alt="Latency comparison of quantized MLP and GRU models across edge devices" />
+    <figcaption>
+      Recommended figure: latency comparison across hardware platforms, highlighting the efficiency of the proposed TinyML deployment.
+    </figcaption>
+  </figure>
 							  <p>
 								<a href="https://ieeexplore.ieee.org/document/10990265" target="_blank">Read the full paper on IEEE Xplore</a>
 							  </p>
