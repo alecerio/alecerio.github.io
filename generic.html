@@ -62,47 +62,46 @@
 								<h3>Efficient Detection of Microplastics on Edge Devices with Tailored Compiler for TinyML Applications</h3>
 								<p><em>Published in IEEE Access, 2025</em></p>
 							  </header>
-							  <h2>Efficient Microplastic Detection on Edge Devices</h2>
 
-  <div class="slide-grid">
-    <div>
-      <h3>Motivation &amp; Key Challenges</h3>
-      <ul>
-        <li>Microplastic detection is critical for environmental monitoring and real-time analysis.</li>
-        <li>On-device AI is needed for low-power, resource-constrained sensing systems.</li>
-        <li>Key challenges: limited memory, latency, energy consumption, and portability.</li>
-        <li>Traditional inference engines introduce overhead on embedded devices.</li>
-      </ul>
-    </div>
+  								<div class="slide-grid">
+  								  <div>
+  								    <h3>Motivation &amp; Key Challenges</h3>
+  								    <ul>
+  								      <li>Microplastic detection is critical for environmental monitoring and real-time analysis.</li>
+  								      <li>On-device AI is needed for low-power, resource-constrained sensing systems.</li>
+  								      <li>Key challenges: limited memory, latency, energy consumption, and portability.</li>
+  								      <li>Traditional inference engines introduce overhead on embedded devices.</li>
+  								    </ul>
+  								  </div>
+							  
+  								  <div>
+  								    <h3>Proposed Approach &amp; Methods</h3>
+  								    <ul>
+  								      <li>NeuralCasting: ONNX-to-native-C compiler for TinyML deployment.</li>
+  								      <li>Direct C generation without an inference engine.</li>
+  								      <li>Post-training int8 quantization integrated into the deployment flow.</li>
+  								      <li>NAS-based selection of lightweight MLP and GRU models.</li>
+  								    </ul>
+  								  </div>
+							  
+  								  <div>
+  								    <h3>Results &amp; Conclusions</h3>
+  								    <ul>
+  								      <li>High accuracy preserved after quantization: MLP ≈ 0.991, GRU ≈ 0.985.</li>
+  								      <li>Lower latency, memory footprint, and energy consumption compared with runtime-based deployment.</li>
+  								      <li>Portable deployment across MCUs and edge devices.</li>
+  								      <li>Direct compilation to C enables efficient and predictable real-time TinyML inference.</li>
+  								    </ul>
+  								  </div>
+  								</div>
 
-    <div>
-      <h3>Proposed Approach &amp; Methods</h3>
-      <ul>
-        <li>NeuralCasting: ONNX-to-native-C compiler for TinyML deployment.</li>
-        <li>Direct C generation without an inference engine.</li>
-        <li>Post-training int8 quantization integrated into the deployment flow.</li>
-        <li>NAS-based selection of lightweight MLP and GRU models.</li>
-      </ul>
-    </div>
-
-    <div>
-      <h3>Results &amp; Conclusions</h3>
-      <ul>
-        <li>High accuracy preserved after quantization: MLP ≈ 0.991, GRU ≈ 0.985.</li>
-        <li>Lower latency, memory footprint, and energy consumption compared with runtime-based deployment.</li>
-        <li>Portable deployment across MCUs and edge devices.</li>
-        <li>Direct compilation to C enables efficient and predictable real-time TinyML inference.</li>
-      </ul>
-    </div>
-  </div>
-
-  <figure>
-    <img src="figures/microplastic_latency_figure5.png"
-         alt="Latency comparison of quantized MLP and GRU models across edge devices" />
-    <figcaption>
-      Recommended figure: latency comparison across hardware platforms, highlighting the efficiency of the proposed TinyML deployment.
-    </figcaption>
-  </figure>
+  							<figure>
+  							  <img src="images/microplastic_table.png"
+  							       alt="Latency comparison of NeuralCasting and ONNX Runtime across edge devices" />
+  							  <figcaption>
+  							    Latency comparison of NeuralCasting and ONNX Runtime, highlighting the efficiency of the proposed TinyML deployment.
+  							  </figcaption>
+  							</figure>
 							  <p>
 								<a href="https://ieeexplore.ieee.org/document/10990265" target="_blank">Read the full paper on IEEE Xplore</a>
 							  </p>
