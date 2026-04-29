@@ -113,47 +113,34 @@
 								<p><em>Published in IEEE ISORC Workshop, 2025</em></p>
 							  </header>
 						  
-							  <p>
-								The paper addresses how to run neural network–based noise suppression (DNS) on small, resource-constrained devices—
-								the kind used in hearing aids, earbuds, and headsets—while still meeting strict real-time latency requirements. It
-								combines <strong>NeuralCasting</strong>, a compiler that turns ONNX models directly into pure C, with <strong>Patmos</strong>, a
-								time-predictable processor architecture, to achieve low-overhead inference with analyzable timing on edge hardware.
-							  </p>
-						  
-							  <p>
-								As the target model, the authors use <strong>NSNet2</strong>, a speech-enhancement network that estimates a frequency-domain mask
-								from noisy audio (STFT) using a stack of fully connected and GRU layers. The system maintains GRU hidden states across
-								frames and produces a denoised signal after inverse STFT—capturing the benefits of modern DNS while fitting embedded
-								constraints.
-							  </p>
-						  
-							  <p>
-								To fit tight memory and energy budgets, the work employs <strong>quantization</strong> and generates <strong>integer-only</strong> kernels,
-								representing scales in fixed-point and computing non-linearities (sigmoid, tanh) via compact lookup tables instead of
-								floating-point math. This keeps execution deterministic and fast on MCUs without FPUs, which is essential for
-								worst-case-execution-time (WCET) analysis.
-							  </p>
-						  
-							  <p>
-								A key contribution is the ability to <strong>analyze and guarantee real-time behavior</strong>. The paper integrates the generated C
-								code with the <em>Platin</em> WCET toolchain, enabling static timing analysis of the full inference path on Patmos—something
-								typical runtime engines struggle to provide due to extra layers and dynamic behaviors.
-							  </p>
-						  
-							  <ul>
-								<li><strong>Compiler–architecture co-design:</strong> NeuralCasting emits platform-agnostic C (no heavyweight runtime), then
-									targets Patmos for predictable timing.</li>
-								<li><strong>Integer-only quantization:</strong> fixed-point scaling and LUT activations avoid FP instructions and stabilize latency.</li>
-								<li><strong>Model choice:</strong> NSNet2 (FC–GRU–GRU–FC…) balances quality and compute for real-time DNS on edge devices.</li>
-								<li><strong>Comparative evaluation:</strong> results are contrasted with state-of-the-art frameworks (TensorFlow Lite, ONNX Runtime,
-									onnx2c, PyTorch) and with other hardware (e.g., Raspberry Pi), highlighting latency stability and overhead reduction.</li>
-							  </ul>
-						  
-							  <p>
-								In plain terms: the paper shows how to turn a practical denoising network into <em>predictable</em>, quantized C code that runs
-								fast and consistently on small devices, and how to prove those timing guarantees with WCET tools—bridging modern AI
-								and the hard real-time requirements of embedded audio.
-							  </p>
+							  <section>
+  <h2>Paper Summary</h2>
+
+  <h3>Motivation &amp; Key Challenges</h3>
+  <ul>
+    <li>Need for real-time noise suppression on edge devices such as hearing aids and headsets, where latency affects audio quality.</li>
+    <li>Deep learning models like NSNet2 offer strong denoising performance but are computationally heavy and memory-demanding.</li>
+    <li>Ensuring time-predictable execution on resource-constrained embedded hardware remains challenging.</li>
+    <li>The system must balance accuracy, latency, and resource usage without over-provisioning hardware.</li>
+  </ul>
+
+  <h3>Proposed Approach &amp; Methods</h3>
+  <ul>
+    <li>Integrates NeuralCasting with the Patmos processor to enable time-predictable deep learning inference.</li>
+    <li>Uses an end-to-end pipeline: PyTorch → ONNX → C code via NeuralCasting → Patmos compilation → WCET analysis with Platin.</li>
+    <li>Applies 8-bit quantization with fixed-point arithmetic and lookup tables for activation functions to reduce computation cost.</li>
+    <li>Uses DAG-based code generation, static memory allocation, and removal of runtime overhead to improve efficiency and predictability.</li>
+  </ul>
+
+  <h3>Results &amp; Conclusions</h3>
+  <ul>
+    <li>NSNet2 successfully runs on Patmos with a WCET of about 64M cycles and measured runtime of about 28.6M cycles.</li>
+    <li>The gap between WCET and actual runtime highlights the importance of worst-case analysis in real-time systems.</li>
+    <li>Fixed-point optimizations drastically reduce execution time, from about 12B cycles to about 28M cycles.</li>
+    <li>The paper shows that time-predictable deep noise suppression on edge devices is feasible, with a trade-off due to quantization error.</li>
+  </ul>
+
+</section>
 							</div>
 						  </section>
 
