@@ -48,10 +48,10 @@
 						<nav class="pub-index" style="margin:20px 0; padding:10px; border-left:3px solid #ccc;">
 							<h3>Publications Index</h3>
 							<ul>
-							  <li><a href="#microplastics">Efficient Detection of Microplastics on Edge Devices With Tailored Compiler for TinyML Applications</a></li>
-							  <li><a href="#rt-neuralcasting">Time-Predictable Deep Noise Suppression on an Edge Device</a></li>
-							  <li><a href="#nas-audio">Neural Architecture Search for Efficient Mixed-Precision Quantization in Audio Denoising</a></li>
-							  <li><a href="#neuralcasting">NeuralCasting: A Front-End Compilation Infrastructure</a></li>
+							  <li><a href="#microplastics">Efficient Detection of Microplastics on Edge Devices With Tailored Compiler for TinyML Applications (2025)</a></li>
+							  <li><a href="#rt-neuralcasting">Time-Predictable Deep Noise Suppression on an Edge Device (2025)</a></li>
+							  <li><a href="#nas-audio">Neural Architecture Search for Efficient Mixed-Precision Quantization in Audio Denoising (2025)</a></li>
+							  <li><a href="#neuralcasting">NeuralCasting: A Front-End Compilation Infrastructure (2024)</a></li>
 							</ul>
 						  </nav>
 
@@ -95,6 +95,12 @@
   								  </div>
   								</div>
 
+								<div style="text-align: center;">
+								<img src="images/microplastic_table.png" 
+									 alt="NeuralCasting vs ONNX Runtime"  
+									 style="max-width: 75%; border-radius: 10px;">
+							</div>
+
 							  
 							  <p>
 								<a href="https://ieeexplore.ieee.org/document/10990265" target="_blank">Read the full paper on IEEE Xplore</a>
@@ -102,8 +108,7 @@
 							</div>
   
 						  </section>
-						  
-						
+
 						
 						  <section id="rt-neuralcasting" class="wrapper style5">
 							<div class="inner">
@@ -114,7 +119,6 @@
 							  </header>
 						  
 							  <section>
-  <h2>Paper Summary</h2>
 
   <h3>Motivation &amp; Key Challenges</h3>
   <ul>
@@ -140,8 +144,15 @@
     <li>The paper shows that time-predictable deep noise suppression on edge devices is feasible, with a trade-off due to quantization error.</li>
   </ul>
 
+  							  <p>
+								<a href="https://ieeexplore.ieee.org/document/11172988" target="_blank">Read the full paper on IEEE Xplore</a>
+							  </p>
+
 </section>
 							</div>
+
+							
+
 						  </section>
 
 						  <section id="nas-audio" class="wrapper">
@@ -155,55 +166,39 @@
 								<p><em>Published in IEEE PerCom Workshop (PerConAI), 2025</em></p>
 							  </header>
 						  
-							  <p>
-								This paper tackles a practical question: how can we run a high-quality speech denoising network on small,
-								resource-constrained hardware without sacrificing audio quality? The authors focus on <strong>NSNet2</strong>—a denoising
-								model based on fully connected and GRU layers—and search automatically for the best <strong>mixed-precision
-								quantization</strong> (per-layer bit-widths of 8, 16, or 32 bits). The goal is to preserve perceptual quality while cutting
-								inference time and memory footprint—key constraints for headsets and similar edge devices.
-							  </p>
-						  
-							  <p>
-								The core method is an <strong>evolutionary Neural Architecture Search</strong> (NAS): each candidate solution encodes
-								the bit-width of every quantizable operation in NSNet2 (a 93-gene chromosome over {8, 16, 32}). A multi-objective
-								fitness evaluates three metrics: (1) <strong>PESQ</strong> (Perceptual Evaluation of Speech Quality) to capture denoising quality,
-								(2) <strong>inference time</strong>, and (3) <strong>memory footprint</strong>. The search uses the <em>pymoo</em> toolkit for selection,
-								crossover, and mutation to evolve a Pareto front of mixed-precision configurations.
-							  </p>
-						  
-							  <p>
-								To make the hardware objectives realistic, the authors implement NSNet2 in <strong>C</strong> and benchmark inference time
-								over 10,000 iterations, while computing the memory footprint from layer sizes and assigned bit-widths. For PESQ,
-								a PyTorch simulation of mixed-precision operators runs STFT-based denoising and scores quality with a standard
-								PESQ implementation. This coupling of <em>software simulation for quality</em> and <em>C benchmarking for performance</em>
-								yields hardware-aware, audio-aware decisions during search.
-							  </p>
-						  
-							  <ul>
-								<li><strong>Problem:</strong> find per-layer bit-widths that keep PESQ high while minimizing time and memory on embedded targets.</li>
-								<li><strong>Approach:</strong> evolutionary NAS over 93 mixed-precision genes (8/16/32-bit) with a three-metric objective (PESQ, time, memory).</li>
-								<li><strong>Evaluation:</strong> C implementation for timing; analytical size for memory; PyTorch MPQ simulation + PESQ for audio quality.</li>
-							  </ul>
-						  
-							  <p>
-								<strong>Key result.</strong> Compared with the float32 baseline, the best mixed-precision solution reduces <strong>inference time by
-								29.93%</strong> and <strong>memory footprint by 57.88%</strong>, with a <em>negligible</em> PESQ drop (near-baseline perceptual quality).
-								Against uniformly quantized int8, the mixed-precision model delivers substantially better PESQ while remaining
-								compact and fast—highlighting the benefit of allocating precision where it matters most.
-							  </p>
-						  
-							  <p>
-								In plain terms, the paper shows how to <em>automatically</em> choose which parts of a denoising network deserve more
-								bits and which can be aggressively quantized, so that the model still sounds good while running faster and fitting
-								on smaller devices. It’s a practical recipe for turning state-of-the-art denoising into an <strong>edge-ready</strong> solution.
-							  </p>
-							</div>
+							  <h3>Motivation &amp; Key Challenges</h3>
+  <ul>
+    <li>Deep learning for audio denoising is effective but difficult to deploy on resource-constrained edge devices due to high memory and computation requirements.</li>
+    <li>Standard quantization reduces computational cost but introduces accuracy loss, especially when using uniform precision across all layers.</li>
+    <li>There is a need to balance audio quality (PESQ), inference time, and memory footprint.</li>
+    <li>Manual tuning of mixed-precision configurations is impractical due to the large search space (e.g., 93 quantizable operations in NSNet2).</li>
+  </ul>
+
+  <h3>Proposed Approach &amp; Methods</h3>
+  <ul>
+    <li>Introduces a Neural Architecture Search (NAS) framework based on evolutionary algorithms to optimize mixed-precision quantization.</li>
+    <li>Each candidate solution is represented as a chromosome encoding bit-widths (8, 16, 32-bit) for weights and activations across the network.</li>
+    <li>Uses multi-objective optimization combining inference time, memory footprint, and PESQ score (audio quality metric).</li>
+    <li>Evaluation pipeline includes C-based inference benchmarking and PyTorch-based PESQ simulation for hardware- and audio-aware optimization.</li>
+  </ul>
+
+  <h3>Results &amp; Conclusions</h3>
+  <ul>
+    <li>Achieves approximately 29.9% reduction in inference time and 57.9% reduction in memory footprint compared to the float32 baseline.</li>
+    <li>Maintains near-baseline audio quality with negligible PESQ degradation.</li>
+    <li>The evolutionary NAS converges to Pareto-optimal solutions balancing performance and quality.</li>
+    <li>Demonstrates that mixed-precision quantization is highly effective for deploying efficient audio models on edge devices without retraining.</li>
+  </ul>
 
 							<div style="text-align: center;">
 								<img src="images/nasnsnet2.png" 
 									 alt="Pareto Optimal"  
 									 style="max-width: 75%; border-radius: 10px;">
 							</div>
+
+							<p>
+								<a href="https://ieeexplore.ieee.org/document/11038582" target="_blank">Read the full paper on IEEE Xplore</a>
+							</p>
 							
 
 						  </section>
@@ -218,49 +213,32 @@
 								<p><em>Published in IEEE IOTSMS, 2024</em></p>
 							  </header>
 						  
-							  <p>
-								The paper introduces <strong>NeuralCasting</strong>, a compiler that converts neural networks encoded in
-								<strong>ONNX</strong> directly into <strong>pure C code</strong> using only the C standard library. By removing the need for a
-								heavyweight inference engine (e.g., ONNX Runtime), the generated code becomes highly portable and
-								latency-efficient on resource-constrained and even bare-metal systems.
-							  </p>
-						  
-							  <p>
-								<strong>Core idea.</strong> Neural networks are modeled as a <strong>directed acyclic graph (DAG)</strong>. NeuralCasting parses the ONNX
-								graph, assembles an internal DAG, then performs a dependency-aware <em>DAG traversal</em> to emit C in the correct
-								order. Each operator node (e.g., GEMM, Conv, GRU) owns a <em>code-generation routine</em> that loads a small C template
-								and expands placeholders (tensor names, loop bounds, indices), producing compact kernels without runtime overhead.
-							  </p>
-						  
-							  <ul>
-								<li><strong>Memory strategy:</strong> weights can be embedded as <em>static data-segment</em> arrays (predictable footprint, no allocator) or
-									loaded to the <em>heap</em> at startup from binary blobs, depending on device constraints.</li>
-								<li><strong>Parallelization:</strong> optional <em>OpenMP</em> clauses are injected during codegen to parallelize per-layer linear-algebra loops
-									(e.g., convolutions, matrix multiplies) on multicore CPUs.</li>
-								<li><strong>Testing pipeline:</strong> every generated model is validated by comparing its outputs against ONNX Runtime/Torch on the
-									same inputs to guarantee numerical correctness.</li>
-							  </ul>
-						  
-							  <p>
-								<strong>What models were compiled?</strong> The paper demonstrates a <em>two-layer MLP</em>, a <em>ResNet</em> cell for image recognition, and
-								<em>NSNet2</em> for speech enhancement/noise suppression—representative of dense, convolutional, and recurrent workloads
-								used in TinyML. Across these, NeuralCasting already supports the majority of required ONNX operators (≈86%).
-							  </p>
-						  
-							  <p>
-								<strong>How fast is it?</strong> On edge-class hardware (x86-64 laptop CPU and Raspberry Pi 5), the generated C achieves competitive
-								average latency, especially on small/medium models; for small MLPs the speedup approaches <strong>~×10</strong> versus
-								ONNX Runtime and PyTorch, thanks to the absence of runtime overhead. Convolutional layers remain the main
-								bottleneck, but parallelization improves throughput.
-							  </p>
-						  
-							  <p>
-								<strong>Why it matters.</strong> By turning ONNX graphs into lean, analyzable C, NeuralCasting gives developers precise control over
-								latency, memory layout, and deployment on <em>bare-metal</em> targets—key requirements for real-time audio, wearables, and
-								other TinyML applications. The project is available open-source, enabling further extensions (e.g., quantization and
-								additional operator coverage).
-							  </p>
-						  
+							  <h3>Motivation &amp; Key Challenges</h3>
+  <ul>
+    <li>Deploying neural networks on edge and embedded systems is challenging due to constraints on latency, memory, energy, and hardware compatibility.</li>
+    <li>Existing frameworks (e.g., ONNX Runtime, PyTorch) rely on runtime engines that introduce overhead and limit deployment on bare-metal systems.</li>
+    <li>Neural networks are not well-suited to traditional compiler representations (AST), requiring graph-based approaches like DAGs.</li>
+    <li>There is a need for efficient compilation techniques that enable real-time inference with minimal abstraction layers.</li>
+  </ul>
+
+  <h3>Proposed Approach &amp; Methods</h3>
+  <ul>
+    <li>Introduces NeuralCasting, a front-end compiler that converts ONNX neural networks into optimized C code without requiring an inference runtime.</li>
+    <li>Uses a pipeline based on parsing ONNX models, building a DAG representation, and generating code through DAG traversal.</li>
+    <li>Implements template-based C code generation with dependency-aware scheduling (Not-Ready, Ready, Generated states).</li>
+    <li>Includes optimizations such as static/heap memory management and automatic parallelization using OpenMP.</li>
+  </ul>
+
+  <h3>Results &amp; Conclusions</h3>
+  <ul>
+    <li>Generated C code achieves competitive or superior performance compared to ONNX Runtime and PyTorch, especially for small models.</li>
+    <li>Up to ~10× speedup is observed for small MLP models, making the approach suitable for edge deployment.</li>
+    <li>Demonstrates strong performance on multiple architectures (x86 and Raspberry Pi), particularly for latency-sensitive applications.</li>
+    <li>Confirms that removing runtime overhead enables efficient real-time inference on resource-constrained and bare-metal systems.</li>
+  </ul>
+  							<p>
+								<a href="https://ieeexplore.ieee.org/document/10710209" target="_blank">Read the full paper on IEEE Xplore</a>
+							</p>
 							  <p>
 								<a href="https://github.com/alecerio/NeuralCasting" target="_blank" rel="noopener">Project repository (GitHub)</a>
 							  </p>
