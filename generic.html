@@ -48,12 +48,72 @@
 						<nav class="pub-index" style="margin:20px 0; padding:10px; border-left:3px solid #ccc;">
 							<h3>Publications Index</h3>
 							<ul>
+							  <li><a href="#rt-neuralcasting-2">Deployment of Quantized Deep Noise Suppression on Real-Time Edge Platforms (2026)</a></li>	
 							  <li><a href="#microplastics">Efficient Detection of Microplastics on Edge Devices With Tailored Compiler for TinyML Applications (2025)</a></li>
 							  <li><a href="#rt-neuralcasting">Time-Predictable Deep Noise Suppression on an Edge Device (2025)</a></li>
 							  <li><a href="#nas-audio">Neural Architecture Search for Efficient Mixed-Precision Quantization in Audio Denoising (2025)</a></li>
 							  <li><a href="#neuralcasting">NeuralCasting: A Front-End Compilation Infrastructure (2024)</a></li>
 							</ul>
 						  </nav>
+
+
+<section id="rt-neuralcasting-2" class="wrapper style5">
+							<div class="inner">
+							  <header class="major">
+								<h3>Deployment of Quantized Deep Noise Suppression on Real-Time Edge Platforms</h3>
+								<p><em>Published in IEEE ISORC, 2026</em></p>
+							  </header>
+
+  								<div class="slide-grid">
+  								  <div>
+  								    <h3>Motivation &amp; Key Challenges</h3>
+  								    <ul>
+  								      <li>Real-time speech enhancement is becoming essential in edge devices such as hearing aids, earbuds, and headsets, where low latency and energy efficiency are critical requirements.</li>
+  								      <li>Modern deep-learning-based noise suppression models achieve excellent audio quality, but their computational and memory demands make deployment on embedded hardware challenging.</li>
+  								      <li>Edge platforms often lack powerful floating-point units and provide limited memory bandwidth, making standard inference runtimes inefficient for real-time execution.</li>
+  								      <li>Achieving predictable inference latency is particularly important for audio applications, since timing jitter and processing delays directly affect perceived sound quality.</li>
+									  <li>Existing AI deployment frameworks mainly optimize throughput and portability, but rarely address Worst-Case Execution Time (WCET) analysis and temporal predictability.</li>
+  								    </ul>
+  								  </div>
+							  
+  								  <div>
+  								    <h3>Proposed Approach &amp; Methods</h3>
+  								    <ul>
+  								      <li>The work integrates NeuralCasting, an ONNX-to-C compiler developed by the authors, with the Patmos time-predictable processor architecture for deterministic AI inference on embedded systems.</li>
+  								      <li>A quantized implementation of the NSNet2 speech enhancement network was deployed using fully integer-based 8-bit inference, replacing floating-point operations with fixed-point arithmetic.</li>
+  								      <li>NeuralCasting converts ONNX graphs into optimized standalone C code without relying on heavyweight runtime engines, reducing computational overhead and memory usage.</li>
+  								      <li>The framework introduces lookup-table-based approximations for non-linear activations such as Sigmoid and Tanh, enabling efficient execution on resource-constrained hardware.</li>
+									  <li>WCET analysis was performed using the Platin toolchain, enabling formal timing analysis and predictable execution behavior for neural-network inference.</li>
+  								    </ul>
+  								  </div>
+							  
+  								  <div>
+  								    <h3>Results &amp; Conclusions</h3>
+  								    <ul>
+  								      <li>Direct code generation approaches such as NeuralCasting consistently outperformed runtime-based frameworks like TensorFlow Lite and ONNX Runtime in embedded scenarios.</li>
+  								      <li>Quantization reduced the memory footprint of the NSNet2 model from roughly 11 MB to 2.8 MB, making deployment on constrained edge devices significantly more feasible.</li>
+  								      <li>Experimental results showed that quantization benefits depend strongly on both the neural-network architecture and the target hardware platform.</li>
+  								      <li>Execution on the Patmos processor demonstrated very low timing variability, confirming the feasibility of predictable neural-network inference for real-time systems.</li>
+									  <li>Although the current implementation does not yet satisfy strict real-time audio constraints, the work demonstrates a promising direction toward deterministic AI deployment on edge devices.</li>
+  								    </ul>
+  								  </div>
+  								</div>
+
+								<div style="text-align: center;">
+								<img src="images/rt_neuralcasting_2_table.png" 
+									 alt="Edge AI Inference Performance on Raspberry Pi"  
+									 style="max-width: 75%; border-radius: 10px;">
+							</div>
+								This table compares the inference latency of different neural network deployment frameworks on a Raspberry Pi platform, evaluating both floating-point (float32) and 8-bit quantized (int8) execution. The results highlight the trade-offs between runtime-based frameworks and direct code-generation approaches in edge AI scenarios. In particular, NeuralCasting and onnx2c achieve significantly lower inference times for lightweight models, while TensorFlow Lite provides competitive performance for larger architectures such as NSNet2. The table also shows that the benefits of quantization strongly depend on both the model complexity and the deployment framework, since int8 inference does not always guarantee faster execution.
+
+							  
+							  <p>
+								<a href="..." target="_blank">Read the full paper on IEEE Xplore <strong>(NOT AVAILABLE YET)</strong></a>
+							  </p>
+							</div>
+  
+						  </section>
+						
 
 
 						<section id="microplastics" class="wrapper">
@@ -95,16 +155,14 @@
   								  </div>
   								</div>
 
-								<div style="text-align: center;">
+								<div style="text-align: center;"></div>
 								<img src="images/microplastic_table.png" 
 									 alt="NeuralCasting vs ONNX Runtime"  
 									 style="max-width: 75%; border-radius: 10px;">
-							</div>
-
-							  
-							  <p>
-								<a href="https://ieeexplore.ieee.org/document/10990265" target="_blank">Read the full paper on IEEE Xplore</a>
-							  </p>
+								
+								<p>
+    								<a href="https://ieeexplore.ieee.org/document/10990265" target="_blank"> Read the full paper on IEEE Xplore</a>
+								</p>
 							</div>
   
 						  </section>
